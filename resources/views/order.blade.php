@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>1000 Store</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+</head>
+
+<body id="body_order">
+<header id="header">
+    <nav id="subsites">
+        <a href="{{route('index')}}" id="k_big" style="margin-left: 0;">1000_elephants</a>
+        {{--        <div class="line"></div>--}}
+        {{--        <a href="" class="k_big" >Конструктор</a>--}}
+        <a href="{{route('index')}}" id="k_small" style="margin-left: 0;">Главная</a>
+        <div class="line"></div>
+        <a href="{{route('info')}}" style="margin-right: 0; padding: 0 2px">О нас</a>
+    </nav>
+    <p id="logo" class="buy_c">Корзина</p>
+    <nav id="buttons">
+        <a href="" id="currency">
+            <div id="current_currency"></div>
+            <div id="arrow"></div>
+        </a>
+        <div id="bag_active">
+            <div id="bag_products">4</div>
+        </div>
+        <a href="" id="hamburger"></a>
+    </nav>
+</header>
+<main>
+    <div id="order_blur"></div>
+    <span id="order_up"></span>
+    <h1>Выберите способ получения:</h1>
+    <div id="order_top_block">
+        <div id="order_back_button">
+            <div id="left_arrow"></div>
+            <div class="vertical_line"></div>
+            <div class="text">Назад</div>
+        </div>
+        <div id="order_catalog">
+            <a href="" id="new">
+                <div id="new_icon"></div>
+                <div class="text">Почта+доставка</div>
+                <div class="text_small_dpi">Почта</div>
+                <div class="vertical_line_small_dpi"></div>
+                <div id="down_menu"></div>
+            </a>
+            <div class="vertical_line"></div>
+            <a href="" id="mail">
+                <div id="mail_icon"></div>
+                <div class="text">Почта</div>
+            </a>
+            <div class="vertical_line"></div>
+            <a href="" id="personally">
+                <div id="personally_icon"></div>
+                <div class="text">Лично</div>
+            </a>
+        </div>
+        <button id="order_card_button" form="order_window" type="submit">
+            <div id="card_icon"></div>
+            <div class="text">Карта</div>
+            <div class="vertical_line"></div>
+            <div id="down_arrow"></div>
+        </button>
+    </div>
+    <form id="order_window">
+        <h1>Куда мы должны отправить Ваш заказ?</h1>
+        <fieldset>
+            <legend>ФИО:</legend>
+            <label for="lname"></label>
+            <input id="lname" name="lname" required placeholder="   Фамилия">
+            <label for="fname"></label>
+            <input id="fname" name="fname" required placeholder="   Имя">
+        </fieldset>
+        <fieldset>
+            <legend>Адресс:</legend>
+            <label for="country"></label>
+            <input id="country" name="country" required placeholder="   Страна">
+            <label for="region"></label>
+            <input id="region" name="region" required placeholder="   Область">
+            <label for="city"></label>
+            <input id="city" name="city" required placeholder="   Город">
+            <label for="street"></label>
+            <input id="street" name="street" required placeholder="   Улица">
+            <label for="home"></label>
+            <input id="home" name="home" required placeholder="   Дом">
+            <label for="index"></label>
+            <input id="index" name="index" required placeholder="   Почтовый индекс">
+        </fieldset>
+        <fieldset>
+            <legend>Контакты:</legend>
+            <label for="email"></label>
+            <input id="email" name="email" required placeholder="   Почта">
+            <label for="mobile_phone"></label>
+            <input id="mobile_phone" name="mobile_phone" required placeholder="   Телефон">
+        </fieldset>
+    </form>
+    <button id="order_card_button_small_dpi" form="order_window" type="submit">
+        <div id="card_icon_small_dpi"></div>
+        <div class="text">2400 ₴</div>
+        <div class="vertical_line"></div>
+        <div id="down_arrow_small_dpi"></div>
+    </button>
+</main>
+<footer class="footer">
+    <div id="left_block">
+        <a href="" id="mobile">Связаться</a>
+        <a href="https://www.instagram.com/1000_elephants/" id="ig_icon"></a>
+        <a href="" id="tg_icon"></a>
+        <a href="https://www.facebook.com/lubava.kalinina" id="fb_icon"></a>
+        <a href="" id="gm_icon"></a>
+        <!--ADD COPYING-->
+        <a href="" id="phone_icon"></a>
+        <span id="phone">+38 067-524-28-71</span>
+    </div>
+    <a href="#up" id="middle_block"></a>
+    <div id="right_block">
+        <a href="" id="translate">
+            <div id="translate_icon"></div>
+            <div class="text">Русский</div>
+            <div id="dn_arrow"></div>
+        </a>
+    </div>
+</footer>
+</body>
+</html>
