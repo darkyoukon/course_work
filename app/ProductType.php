@@ -17,28 +17,57 @@ class ProductType extends Model
     }
 
     public static function test_add_entries() {
-        $product = new Product();
-        $product->name = 'Test';
-        $product->price_uah = 123;
-        $product->price_usd = 60;
-        $product->image= Product::all()->where('id', 1)->first()->image;
-        $product->save();
 
         $products = Product::all();
         if($products) {
+            $product_type = new ProductType;
+            $product_type->product_id = $products[0]->id;
+            $product_type->type_id = 3;
+            $product_type->save();
+
             $product_type = new ProductType;
             $product_type->product_id = $products[1]->id;
             $product_type->type_id = 3;
             $product_type->save();
 
             $product_type = new ProductType;
+            $product_type->product_id = $products[2]->id;
+            $product_type->type_id = 3;
+            $product_type->save();
+
+            $product_type = new ProductType;
+            $product_type->product_id = $products[3]->id;
+            $product_type->type_id = 3;
+            $product_type->save();
+
+            $product_type = new ProductType;
+            $product_type->product_id = $products[4]->id;
+            $product_type->type_id = 3;
+            $product_type->save();
+
+            $product_type = new ProductType;
+            $product_type->product_id = $products[5]->id;
+            $product_type->type_id = 3;
+            $product_type->save();
+
+            $product_type = new ProductType;
+            $product_type->product_id = $products[6]->id;
+            $product_type->type_id = 3;
+            $product_type->save();
+
+            $product_type = new ProductType;
+            $product_type->product_id = $products[7]->id;
+            $product_type->type_id = 3;
+            $product_type->save();
+            ///
+            $product_type = new ProductType;
             $product_type->product_id = $products[0]->id;
             $product_type->type_id = 2;
             $product_type->save();
 
             $product_type = new ProductType;
-            $product_type->product_id = $products[0]->id;
-            $product_type->type_id = 3;
+            $product_type->product_id = $products[1]->id;
+            $product_type->type_id = 1;
             $product_type->save();
 
             $product_type = new ProductType;
@@ -47,8 +76,28 @@ class ProductType extends Model
             $product_type->save();
 
             $product_type = new ProductType;
-            $product_type->product_id = $products[2]->id;
-            $product_type->type_id = 3;
+            $product_type->product_id = $products[3]->id;
+            $product_type->type_id = 1;
+            $product_type->save();
+
+            $product_type = new ProductType;
+            $product_type->product_id = $products[4]->id;
+            $product_type->type_id = 2;
+            $product_type->save();
+
+            $product_type = new ProductType;
+            $product_type->product_id = $products[5]->id;
+            $product_type->type_id = 1;
+            $product_type->save();
+
+            $product_type = new ProductType;
+            $product_type->product_id = $products[6]->id;
+            $product_type->type_id = 2;
+            $product_type->save();
+
+            $product_type = new ProductType;
+            $product_type->product_id = $products[7]->id;
+            $product_type->type_id = 2;
             $product_type->save();
         }
     }

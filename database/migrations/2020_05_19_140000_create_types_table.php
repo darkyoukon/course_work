@@ -17,7 +17,7 @@ class CreateTypesTable extends Migration
     {
         Schema::create('types', function (Blueprint $table) {
             $table->id();
-            $table->binary('image');
+            $table->text('image_name');
             $table->text('type');
             $table->timestamps();
         });

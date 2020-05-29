@@ -21,14 +21,14 @@
     </nav>
     <p id="logo" class="buy_c">Корзина</p>
     <nav id="buttons">
-        <a href="" id="currency">
-            <div id="current_currency"></div>
-            <div id="arrow"></div>
-        </a>
+{{--        <a href="" id="currency">--}}
+{{--            <div id="current_currency"></div>--}}
+{{--            <div id="arrow"></div>--}}
+{{--        </a>--}}
         <div id="bag_active">
-            <div id="bag_products">4</div>
+            <div id="bag_products">{{$bag_capacity}}</div>
         </div>
-        <a href="" id="hamburger"></a>
+{{--        <a href="" id="hamburger"></a>--}}
     </nav>
 </header>
 <main>
@@ -36,75 +36,101 @@
     <span id="order_up"></span>
     <h1>Выберите способ получения:</h1>
     <div id="order_top_block">
-        <div id="order_back_button">
+        <a href="{{route('bag')}}" id="order_back_button">
             <div id="left_arrow"></div>
             <div class="vertical_line"></div>
             <div class="text">Назад</div>
+        </a>
+{{--        <div id="order_catalog">--}}
+{{--            <a href="" id="new">--}}
+{{--                <div id="new_icon"></div>--}}
+{{--                <div class="text">Почта+доставка</div>--}}
+{{--                <div class="text_small_dpi">Почта</div>--}}
+{{--                <div class="vertical_line_small_dpi"></div>--}}
+{{--                <div id="down_menu"></div>--}}
+{{--            </a>--}}
+{{--            <div class="vertical_line"></div>--}}
+{{--            <a href="" id="mail">--}}
+{{--                <div id="mail_icon"></div>--}}
+{{--                <div class="text">Почта</div>--}}
+{{--            </a>--}}
+{{--            <div class="vertical_line"></div>--}}
+{{--            <a href="" id="personally">--}}
+{{--                <div id="personally_icon"></div>--}}
+{{--                <div class="text">Лично</div>--}}
+{{--            </a>--}}
+{{--        </div>--}}
+        <div id="catalog" style="margin: 0 15px">
+            @for($i = 0; $i < count($all_order_types); $i++)
+                @if($all_order_types[$i]->id == $cur->id)
+                    <div style="cursor: default" class="entry">
+                        <img src="{{asset('img/order_types/'.$all_order_types[$i]->image_name)}}" class="catalog_icon" alt="icon">
+                        <div class="text marked">{{$all_order_types[$i]->name}}</div>
+                    </div>
+                @else
+                    <form id="catalog_{{$i}}" class="entry_form" action="{{route('bag_order')}}" method="POST">
+                        @csrf
+                        <input type="hidden" name="type_id" value="{{$all_order_types[$i]->id}}"/>
+                    </form>
+                    <a href="javascript:{}" onclick="document.getElementById('catalog_{{$i}}').submit({{$i}}); return false;" class="entry">
+                        <img src="{{asset('img/order_types/'.$all_order_types[$i]->image_name)}}" class="catalog_icon" alt="icon">
+                        <div class="text">{{$all_order_types[$i]->name}}</div>
+                    </a>
+                @endif
+                @if($i != count($all_order_types) - 1)
+                    <div class="vertical_line"></div>
+                @endif
+            @endfor
+            <div id="vertical_line_small_dpi"></div>
         </div>
-        <div id="order_catalog">
-            <a href="" id="new">
-                <div id="new_icon"></div>
-                <div class="text">Почта+доставка</div>
-                <div class="text_small_dpi">Почта</div>
-                <div class="vertical_line_small_dpi"></div>
-                <div id="down_menu"></div>
-            </a>
-            <div class="vertical_line"></div>
-            <a href="" id="mail">
-                <div id="mail_icon"></div>
-                <div class="text">Почта</div>
-            </a>
-            <div class="vertical_line"></div>
-            <a href="" id="personally">
-                <div id="personally_icon"></div>
-                <div class="text">Лично</div>
-            </a>
-        </div>
-        <button id="order_card_button" form="order_window" type="submit">
+        <a href="javascript:{}" onclick="document.getElementById('order_window').submit(); return false;" id="order_card_button" type="submit">
+        {{--form="order_window" type="submit">--}}
             <div id="card_icon"></div>
-            <div class="text">Карта</div>
+            <div class="text">{{$sum}}</div>
             <div class="vertical_line"></div>
             <div id="down_arrow"></div>
-        </button>
+        </a>
     </div>
-    <form id="order_window">
-        <h1>Куда мы должны отправить Ваш заказ?</h1>
+    <form id="order_window" method="post" action="{{route('order_complete', $cur->id)}}">
+        <h1 style="padding: 0">Куда мы должны отправить Ваш заказ?</h1>
+        @csrf
+        <input type="hidden" name="product_id" value="{{$sum}}"/>
         <fieldset>
             <legend>ФИО:</legend>
             <label for="lname"></label>
-            <input id="lname" name="lname" required placeholder="   Фамилия">
+            <input id="lname" name="lname" required placeholder="Фамилия" style="padding-left: 20px">
             <label for="fname"></label>
-            <input id="fname" name="fname" required placeholder="   Имя">
+            <input id="fname" name="fname" required placeholder="Имя" style="padding-left: 20px">
         </fieldset>
         <fieldset>
             <legend>Адресс:</legend>
             <label for="country"></label>
-            <input id="country" name="country" required placeholder="   Страна">
+            <input id="country" name="country" required placeholder="Страна" style="padding-left: 20px">
             <label for="region"></label>
-            <input id="region" name="region" required placeholder="   Область">
+            <input id="region" name="region" required placeholder="Область" style="padding-left: 20px">
             <label for="city"></label>
-            <input id="city" name="city" required placeholder="   Город">
+            <input id="city" name="city" required placeholder="Город" style="padding-left: 20px">
             <label for="street"></label>
-            <input id="street" name="street" required placeholder="   Улица">
+            <input id="street" name="street" required placeholder="Улица" style="padding-left: 20px">
             <label for="home"></label>
-            <input id="home" name="home" required placeholder="   Дом">
+            <input id="home" name="home" required placeholder="Дом" style="padding-left: 20px">
             <label for="index"></label>
-            <input id="index" name="index" required placeholder="   Почтовый индекс">
+            <input id="index" name="index" required placeholder="Почтовый индекс" style="padding-left: 20px">
         </fieldset>
         <fieldset>
             <legend>Контакты:</legend>
             <label for="email"></label>
-            <input id="email" name="email" required placeholder="   Почта">
+            <input id="email" name="email" required placeholder="Почта" style="padding-left: 20px">
             <label for="mobile_phone"></label>
-            <input id="mobile_phone" name="mobile_phone" required placeholder="   Телефон">
+            <input id="mobile_phone" name="mobile_phone" required placeholder="Телефон" style="padding-left: 20px">
         </fieldset>
     </form>
-    <button id="order_card_button_small_dpi" form="order_window" type="submit">
+    <a href="javascript:{}" onclick="document.getElementById('order_window').submit(); return false;" id="order_card_button_small_dpi" type="submit">
         <div id="card_icon_small_dpi"></div>
-        <div class="text">2400 ₴</div>
+        <div class="text">{{$sum}} ₴</div>
         <div class="vertical_line"></div>
         <div id="down_arrow_small_dpi"></div>
-    </button>
+    </a>
 </main>
 <footer class="footer">
     <div id="left_block">
@@ -120,9 +146,9 @@
     <a href="#up" id="middle_block"></a>
     <div id="right_block">
         <a href="" id="translate">
-            <div id="translate_icon"></div>
-            <div class="text">Русский</div>
-            <div id="dn_arrow"></div>
+{{--            <div id="translate_icon"></div>--}}
+{{--            <div class="text">Русский</div>--}}
+{{--            <div id="dn_arrow"></div>--}}
         </a>
     </div>
 </footer>

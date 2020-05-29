@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBagsTable extends Migration
+class CreateOrderTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateBagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bags', function (Blueprint $table) {
+        Schema::create('order_types', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('product_id')->unsigned();
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->bigInteger('price_id')->unsigned();
-            $table->foreign('price_id')->references('id')->on('prices');
+            $table->text('name');
+            $table->text('image_name');
             $table->timestamps();
         });
+        \App\OrderType::insert_default();
     }
 
     /**
@@ -30,6 +29,6 @@ class CreateBagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bags');
+        Schema::dropIfExists('order_types');
     }
 }

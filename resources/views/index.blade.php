@@ -10,6 +10,9 @@
 </head>
 
 <body>
+@if (session()->has('success'))
+    <div id="complete_message">{{session('success')}}</div>
+@endif
 <header id="header">
     <nav id="subsites">
         <a href="#ordering_block" id="k_big" style="margin-left: 0;">Каталог & Конструктор</a>
@@ -19,12 +22,18 @@
     </nav>
     <p id="logo">1000_elephants</p>
     <nav id="buttons">
-        <a href="" id="currency">
-            <div id="current_currency"></div>
-            <div id="arrow"></div>
-        </a>
-        <a href="{{route('bag')}}" id="bag"></a>
-        <a href="" id="hamburger"></a>
+{{--        <a href="" id="currency">--}}
+{{--            <div id="current_currency"></div>--}}
+{{--            <div id="arrow"></div>--}}
+{{--        </a>--}}
+        @if(!$bag_capacity)
+            <a href="{{route('bag')}}" id="bag"></a>
+        @else
+            <a href="{{route('bag')}}" id="bag">
+                <div id="bag_products">{{$bag_capacity}}</div>
+            </a>
+        @endif
+{{--        <a href="" id="hamburger"></a>--}}
     </nav>
 </header>
 <main id="main_block">
@@ -46,7 +55,7 @@
                 <a href="#your_happiness" id="photos">
                     <div id="first_photo">
                         <div id="press">Нажмите, чтобы просмотреть</div>
-                        <img src="img/first_photo.png" id="photo" alt="first_photo :)">
+                        <img src="{{asset('img/first_photo.png')}}" id="photo" alt="first_photo :)">
                     </div>
                     <div id="second_photo"></div>
                     <div id="third_photo"></div>
@@ -63,15 +72,13 @@
     <div id="desire_line"></div>
     <div id="toys">
         <div id="left_toy">
-            <img id="left_toy_image" src="img/left_toy.png" alt="left_toy">
+            <img id="left_toy_image" src="{{asset('img/left_toy.png')}}" alt="left_toy">
             <div id="grad_left"></div>
-            <a href="" id="button_next_left"></a>
         </div>
-        <img id="middle_toy" src="img/middle_toy.png" alt="middle_toy">
+        <img id="middle_toy" src="{{asset('img/middle_toy.png')}}" alt="middle_toy">
         <div id="right_toy">
-            <img id="right_toy_image" src="img/right_toy.png" alt="right_toy">
+            <img id="right_toy_image" src="{{asset('img/right_toy.png')}}" alt="right_toy">
             <div id="grad_right"></div>
-            <a href="" id="button_next_right"></a>
         </div>
     </div>
     <H1 id="your_happiness">Дарите своим близким радость :)</H1>
@@ -81,7 +88,7 @@
                 <div class="profile_photo"></div>
                 <p class="profile_nickname">1000_elephants</p>
             </div>
-            <img class="photos" src="img/first_photo.png" alt="first_ig_photo">
+            <img class="photos" src="{{asset('img/first_photo.png')}}" alt="first_ig_photo">
             <p class="profile_text" style="font-weight: bold; margin-bottom: 0">1000_elephants</p>
             <p class="profile_text" style="margin-top: 0">Все слонятки мои любимые. Потому что я пришла сюда любить.</p>
             <div class="horizontal_line"></div>
@@ -100,7 +107,7 @@
                 <div class="profile_photo"></div>
                 <p class="profile_nickname">1000_elephants</p>
             </div>
-            <img class="photos" src="img/second_photo.png" alt="second_ig_photo">
+            <img class="photos" src="{{asset('img/second_photo.png')}}" alt="second_ig_photo">
             <p class="profile_text" style="font-weight: bold; margin-bottom: 0">1000_elephants</p>
             <p class="profile_text" style="margin-top: 0">Новая команда слоняш. Когда мне бывает грустно, когда одолевает беспокойство или когда я чувствую недостаток сил, меня исцеляет моя религия - моё рукотворчество.</p>
             <div class="horizontal_line"></div>
@@ -119,7 +126,7 @@
                 <div class="profile_photo"></div>
                 <p class="profile_nickname">1000_elephants</p>
             </div>
-            <img class="photos" src="img/fourth_photo.png" alt="fourth_ig_photo">
+            <img class="photos" src="{{asset('img/fourth_photo.png')}}" alt="fourth_ig_photo">
             <p class="profile_text" style="font-weight: bold; margin-bottom: 0">1000_elephants</p>
             <p class="profile_text" style="margin-top: 0">Моя давно забытая серия психоделических игрушек «Чудовище по имени Чудо».
                 Где-то глубоко в каждом из нас живут монстрики, которые иногда нами управляют. Этот - любит, когда бабочки в животе.... А еще у него то ли одна подтяжка порвалась, то ли это хвост... доподлинно неизвестно. И, да, у него не то, чтобы глаза нет, просто он закрыт на некоторые вещи.... В общем, если хотите бабочек в животе - милости просим.
@@ -166,9 +173,9 @@
     <a href="#main_block" id="middle_block" style="display: block"></a>
     <div id="right_block">
         <a href="" id="translate">
-            <div id="translate_icon"></div>
-            <div class="text">Русский</div>
-            <div id="dn_arrow"></div>
+{{--            <div id="translate_icon"></div>--}}
+{{--            <div class="text">Русский</div>--}}
+{{--            <div id="dn_arrow"></div>--}}
         </a>
     </div>
 </footer>

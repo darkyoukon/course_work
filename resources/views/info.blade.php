@@ -21,12 +21,18 @@
     </nav>
     <p id="logo" class="info_c">О нас</p>
     <nav id="buttons">
-        <a href="" id="currency">
-            <div id="current_currency"></div>
-            <div id="arrow"></div>
-        </a>
-        <a href="{{route('bag')}}" id="bag"></a>
-        <a href="" id="hamburger"></a>
+{{--        <a href="" id="currency">--}}
+{{--            <div id="current_currency"></div>--}}
+{{--            <div id="arrow"></div>--}}
+{{--        </a>--}}
+        @if(!$bag_capacity)
+            <a href="{{route('bag')}}" id="bag"></a>
+        @else
+            <a href="{{route('bag')}}" id="bag">
+                <div id="bag_products">{{$bag_capacity}}</div>
+            </a>
+        @endif
+{{--        <a href="" id="hamburger"></a>--}}
     </nav>
 </header>
 <main>
@@ -95,9 +101,9 @@
     <a href="#up" id="middle_block"></a>
     <div id="right_block">
         <a href="" id="translate">
-            <div id="translate_icon"></div>
-            <div class="text">Русский</div>
-            <div id="dn_arrow"></div>
+{{--            <div id="translate_icon"></div>--}}
+{{--            <div class="text">Русский</div>--}}
+{{--            <div id="dn_arrow"></div>--}}
         </a>
     </div>
 </footer>

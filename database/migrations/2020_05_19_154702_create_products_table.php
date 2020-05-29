@@ -20,9 +20,9 @@ class CreateProductsTable extends Migration
             $table->text('name');
             $table->integer('price_uah');
             $table->integer('price_usd');
+            $table->text('image_name');
             $table->timestamps();
         });
-        DB::statement("ALTER TABLE products ADD image MEDIUMBLOB");
 
         Product::insert_default();
     }
